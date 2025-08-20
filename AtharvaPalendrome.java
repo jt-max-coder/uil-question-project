@@ -1,14 +1,14 @@
-import java.util.*;
-public Class AtharvaPalendrome {
-	Public AtharvaPalendrome(){
-
+public class AtharvaPalendrome{
+	public AtharvaPalendrome(){
+        return;
     }
 
     public boolean isPalendrome(String input){
 	    String before = input;
 	    String after = "";
-	    for(int i = before.length()-1; i >= 0; i--){
-		    after += before;
+        after += before.substring(before.length()-1);
+	    for(int i = before.length()-1; i > 0; i--){
+            after += before.substring(i-1, i);
 	    }
 	    if(before.equals(after))
 		    return true;
@@ -16,14 +16,14 @@ public Class AtharvaPalendrome {
     }
 
     public String onlyPalendromes(String input){
-	    String[] words = String.split(" ");
+	    String[] words = input.split(" ");
         String retString = "";
         for(int i = 0; i < words.length; i++){
-            wordsTest = words[i];
-            if(isPalendrome(wordsTest.remove("\\p{Punct}")))     
+            String thisWord = words[i].replaceAll("\\p{Punct}", "");
+            if(isPalendrome(thisWord))     
                 retString += words[i] + " ";
         }
-        retString.remove(retString.length-1);
+        retString = retString.substring(0, retString.length());
         return retString;
     }
 }
